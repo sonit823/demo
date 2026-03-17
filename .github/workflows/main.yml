@@ -1,0 +1,24 @@
+name: CI/CD Manual Setup # Tên của workflow
+
+on:
+  push:
+    branches: [ "main" ] # Chạy khi có code push lên nhánh main
+  pull_request:
+    branches: [ "main" ] # Chạy khi có yêu cầu gộp code vào main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Sử dụng hệ điều hành Ubuntu để chạy
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4 # Bước này để lấy code từ repo vào máy ảo
+
+    - name: Install dependencies
+      run: npm install # Ví dụ lệnh cài đặt thư viện (nếu là dự án Node.js)
+
+    - name: Run tests
+      run: npm test # Ví dụ lệnh chạy test tự động
+
+    - name: Build project
+      run: npm run build # Ví dụ lệnh build dự án
